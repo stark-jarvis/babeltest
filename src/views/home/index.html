@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Test Demo</title>
+<style type="text/css">
+	.test,
+	.pause,
+	.play{ height:100px; height:40px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div id="play" class="play">play</div>
+	<div id="pause" class="pause">pause</div>
+	<div id="test" class="test">test</div>
+</div>
+<script>
+	document.querySelector('#test').addEventListener('click', (e) => {
+		e.preventDefault();
+		console.log(e);
+	});
+</script>
+<script src="../../../dist/js/app/page/home/index.js"></script>
+</body>
+</html>
+
