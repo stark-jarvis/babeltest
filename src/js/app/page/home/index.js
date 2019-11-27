@@ -8,7 +8,7 @@ import Player from '../../common/player/player';
 
 const version = '6.2.1.0';
 
-let list = ['IE', 'FireFox', 'Edge', 'Chrome'];
+let list = ['IE', 'FireFox', 'Edge', 'Chrome', 'QQBrowser'];
 
 let player = new Player({
 	id: 'h5Player',

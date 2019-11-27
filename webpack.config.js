@@ -5,17 +5,31 @@
 
 const path = require('path');
 
-let entryPath = './src/js/app/page/home/index.js';
-let outputPath = entryPath.replace('src', 'dist');
+// 清除输出目录文件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-console.log(outputPath);
+//let entryPath = './src/js/app/page/home/index.js';
+let entryPath = {
+	index: './src/js/app/page/home/index.js',
+	page: './src/js/app/page/home/page.js'
+};
+/**
+let entryPath = {
+	index: './src/js/app/page/home/index.js',
+	page: './src/js/app/page/home/page.js'
+}
+*/
+//let outputPath = entryPath.replace('src', 'dist');
+
+//console.log(outputPath);
 
 module.exports = {
+	mode: 'production',
 	entry: entryPath,
 	output: {
 		path: path.resolve(__dirname, './dist/js/app/page/home'),
-		filename: 'index.js'
-		//filename: '[name]-bundle.js'
+		filename: '[name].js'
+		//filename: '[name]-[hash:8].js'
 	},
 	module: {
 		rules: [{
@@ -24,5 +38,24 @@ module.exports = {
 			loader: 'babel-loader',
 			exclude: /node_modules/
 		}]
-	}
+	},
+
+	watch: true,
+	watchOptions: {
+		poll: 1000, // 每秒询问多少次
+		aggregateTimeout: 500,  //防抖 多少毫秒后再次触发
+		ignored: /node_modules/ //忽略时时监听
+	},
+
+	plugins: [
+		// 清空与 output.path 目录文件
+		new CleanWebpackPlugin()
+		/**
+		 * 清空指定目录，需绝对路径
+		new CleanWebpackPlugin({
+			dry: true,
+			cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, './dist/*'), path.resolve(__dirname, './test/sdk')]
+		})
+		*/
+	]
 };
